@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import { MdAdd } from "react-icons/md";
 import UserList from "../../components/UserList/UserList";

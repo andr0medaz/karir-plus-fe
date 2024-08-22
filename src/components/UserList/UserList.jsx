@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ReactPaginate from "react-paginate";
-import { FaMagnifyingGlass, FaTrash } from "react-icons/fa6";
-import { IoMdClose } from "react-icons/io";
 import { Link } from "react-router-dom";
-import Modal from "react-modal";
 import DetailEmployee from "../Cards/DetailEmployee";
 import { MdMoreHoriz } from "react-icons/md";
 
@@ -40,7 +37,7 @@ const UserList = () => {
   };
 
   const getUsers = async () => {
-    const response = await axios.get(`http://localhost:5000/employee?search_query=${keyword}&page=${page}&limit=${limit}`);
+    const response = await axios.get(`http://localhost:5000/api/get-employee-v2?search_query=${keyword}&page=${page}&limit=${limit}`);
     console.log("Fetched data for page:", page, response.data);
     setUsers(response.data.result);
     setPage(response.data.page);
@@ -91,8 +88,8 @@ const UserList = () => {
                 <th className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Pangkat</th>
                 <th className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Jabatan</th>
                 <th className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Lulusan</th>
-                <th className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">No. Telepon</th>
                 <th className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Hari Kenaikan</th>
+                <th className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Tanggal Kenaikan</th>
                 <th className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"></th>
               </tr>
             </thead>
@@ -105,8 +102,8 @@ const UserList = () => {
                   <td className="px-6 py-4 text-sm text-left text-gray-700">{user.pangkat}</td>
                   <td className="px-6 py-4 text-sm text-left text-gray-700">{user.jabatan}</td>
                   <td className="px-6 py-4 text-sm text-left text-gray-700">{user.academic_background}</td>
-                  <td className="px-6 py-4 text-sm text-left text-gray-700">{user.nomor_telepon}</td>
-                  <td className="px-6 py-4 text-sm text-left text-gray-700">.......</td>
+                  <td className="px-6 py-4 text-sm text-left text-gray-700">{user.daysToNextPromotion}</td>
+                  <td className="px-6 py-4 text-sm text-left text-gray-700">{user.nextPromotionDate }</td>
                   <td className="px-6 py-4 text-sm text-left text-gray-700">
                     <td>
                       <button className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700" onClick={() => setOpen(true)}>
@@ -121,7 +118,7 @@ const UserList = () => {
                             <p className="text-sm text-gray-500">pilih aksi yang diinginkan</p>
                           </div>
                           <div className="flex gap-4">
-                            <Link to={`/api/employee/update/${user.nik}`} className="w-full px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700 btn">
+                            <Link to={`/employee/edit/${user.nik}`} className="w-full px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700 btn">
                               Edit
                             </Link>
                             <button onClick={() => deleteData(user.nik)} className="w-full px-4 py-2 font-bold text-white bg-red-600 rounded hover:bg-red-800 btn">

@@ -15,7 +15,7 @@ const AddData = () => {
   const createUser = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/employee/create", {
+      await axios.post("http://localhost:5000/api/employee/create", {
         name,
         tanggal_masuk,
         pangkat,

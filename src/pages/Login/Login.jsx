@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Navbar from "../../components/Navbar/Navbar";
-import { Link, useNavigate } from "react-router-dom"; // Import useNavigate
+import {useNavigate } from "react-router-dom"; // Import useNavigate
 import PasswordInput from "../../components/Input/PasswordInput";
 import { validateEmail } from "../../utils/helper";
 import axios from "axios";
@@ -73,12 +73,6 @@ const Login = () => {
             <button type="submit" className="btn-primary">
               Login
             </button>
-            {/* <p className="mt-4 text-sm text-center">
-              Belum mempunyai akses akun?{" "}
-              <Link to="/signup" className="font-medium underline text-primary">
-                Buat Akun Disini
-              </Link>
-            </p> */}
           </form>
         </div>
       </div>

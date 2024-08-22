@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -13,21 +13,17 @@ const EditData = () => {
   const { nik } = useParams();
   const [successMessage, setSuccessMessage] = useState("");
 
-  useEffect(() => {
-    getUserById();
-  }, []);
 
   const updateUser = async (e) => {
     e.preventDefault();
     try {
-      await axios.patch(`http://localhost:5000/api/employee/update/${nik}`, {
+      await axios.patch(`http://localhost:5000/api/employee/edit/${nik}`, {
         name,
         tanggal_masuk,
         pangkat,
         jabatan,
         academic_background,
         nomor_telepon,
-        nik,
       });
       setSuccessMessage("Data successfully updated!");
       setTimeout(() => {
@@ -39,15 +35,6 @@ const EditData = () => {
     }
   };
 
-  const getUserById = async () => {
-    const response = await axios.get(`http://localhost:5000/users/${id}`);
-    setName(response.data.name);
-    setTanggalMasuk(response.data.tanggal_masuk);
-    setPangkat(response.data.pangkat);
-    setJabatan(response.data.jabatan);
-    setAcademicBackground(response.data.academic_background);
-    setNomorTelepon(response.data.nomor_telepon);
-  };
 
   return (
     <div className="flex justify-center mt-5">
